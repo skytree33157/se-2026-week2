@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class Node {
     public String label;
@@ -15,6 +17,19 @@ public class Node {
         this.children.add(child);
     }
 
+    // bfs 추가
+    public List<String> bfs() {
+        List<String> visited = new ArrayList<>();
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(this);
+
+        while (!queue.isEmpty()) {
+            Node current = queue.poll();
+            visited.add(current.label);
+            queue.addAll(current.children);
+        }
+
+        return visited;
 
     public boolean hasChild() { // Check if the node has any children and return true if it does, false otherwise
         return this.children != null && !this.children.isEmpty();

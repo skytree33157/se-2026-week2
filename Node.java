@@ -24,5 +24,17 @@ public class Node {
         System.out.println(this.label);
         if (!this.hasChild()) return;
         for (Node child : this.children) if (child != null) child.dfs();
+    public int height(){
+        if(children.isEmpty()){
+            return 0;
+        }
+        int maxHeight=0;
+        for(Node child: children){
+            int childHeight=child.height();
+            if(childHeight>maxHeight){
+                maxHeight=childHeight;
+            }
+        }
+        return maxHeight+1;
     }
 }
